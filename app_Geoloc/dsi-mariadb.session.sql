@@ -1,0 +1,1 @@
+SELECT DISTINCT * FROM TBL_SyncAbyla_PP 

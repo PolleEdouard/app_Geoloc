@@ -1,0 +1,108 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.69.0
+        version: 5.69.0
+      leaflet-search:
+        specifier: ^4.0.0
+        version: 4.0.0
+      react-leaflet:
+        specifier: ^5.0.0
+        version: 5.0.0(leaflet@1.9.4)
+      react-leaflet-geosearch:
+        specifier: ^0.3.4
+        version: 0.3.4(leaflet-geosearch@2.7.0)(leaflet@1.9.4)(react-leaflet@5.0.0(leaflet@1.9.4))
+
+packages:
+
+  '@react-leaflet/core@3.0.0':
+    resolution: {integrity: sha512-3EWmekh4Nz+pGcr+xjf0KNyYfC3U2JjnkWsh0zcqaexYqmmB5ZhH37kz41JXGmKzpaMZCnPofBBm64i+YrEvGQ==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
+  '@tanstack/query-core@5.69.0':
+    resolution: {integrity: sha512-Kn410jq6vs1P8Nm+ZsRj9H+U3C0kjuEkYLxbiCyn3MDEiYor1j2DGVULqAz62SLZtUZ/e9Xt6xMXiJ3NJ65WyQ==}
+
+  '@tanstack/react-query@5.69.0':
+    resolution: {integrity: sha512-Ift3IUNQqTcaFa1AiIQ7WCb/PPy8aexZdq9pZWLXhfLcLxH0+PZqJ2xFImxCpdDZrFRZhLJrh76geevS5xjRhA==}
+    peerDependencies:
+      react: ^18 || ^19
+
+  leaflet-geosearch@2.7.0:
+    resolution: {integrity: sha512-6rZIZ5mp9Ifp3R37DKe7ipHV6/qnUY5kP1gNDz3oMT4hp5FqKyB2V4enoTDT1iziE8yrn0hy/OP9oI4HG1dKEw==}
+
+  leaflet-search@4.0.0:
+    resolution: {integrity: sha512-V+Y7DURVoy6Y9ZGywfyorDRMYDbLwpWPA0yec+g2aW+iNZySdwv936jDZJtRfYxvkPRMEb8jDjH+Zf3nSFTPEw==}
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
+
+  lodash.debounce@4.0.8:
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+
+  nodent-runtime@3.2.1:
+    resolution: {integrity: sha512-7Ws63oC+215smeKJQCxzrK21VFVlCFBkwl0MOObt0HOpVQXs3u483sAmtkF33nNqZ5rSOQjB76fgyPBmAUrtCA==}
+
+  react-leaflet-geosearch@0.3.4:
+    resolution: {integrity: sha512-hI1QfdZ4AAKSij9e6HCfAVDVgBuCGqqRN40WOCNfXOvbLH9dzNpzmrGSp/GY2euDCqOTdGqYa0jfy8hwCxKDWg==}
+    peerDependencies:
+      leaflet: ^1.7.1
+      leaflet-geosearch: ^2.7.0
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0
+      react-leaflet: ^3.0.5
+
+  react-leaflet@5.0.0:
+    resolution: {integrity: sha512-CWbTpr5vcHw5bt9i4zSlPEVQdTVcML390TjeDG0cK59z1ylexpqC6M1PJFjV8jD7CF+ACBFsLIDs6DRMoLEofw==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^19.0.0
+      react-dom: ^19.0.0
+
+snapshots:
+
+  '@react-leaflet/core@3.0.0(leaflet@1.9.4)':
+    dependencies:
+      leaflet: 1.9.4
+
+  '@tanstack/query-core@5.69.0': {}
+
+  '@tanstack/react-query@5.69.0':
+    dependencies:
+      '@tanstack/query-core': 5.69.0
+
+  leaflet-geosearch@2.7.0:
+    dependencies:
+      lodash.debounce: 4.0.8
+      nodent-runtime: 3.2.1
+
+  leaflet-search@4.0.0:
+    dependencies:
+      leaflet: 1.9.4
+
+  leaflet@1.9.4: {}
+
+  lodash.debounce@4.0.8: {}
+
+  nodent-runtime@3.2.1: {}
+
+  react-leaflet-geosearch@0.3.4(leaflet-geosearch@2.7.0)(leaflet@1.9.4)(react-leaflet@5.0.0(leaflet@1.9.4)):
+    dependencies:
+      leaflet: 1.9.4
+      leaflet-geosearch: 2.7.0
+      react-leaflet: 5.0.0(leaflet@1.9.4)
+
+  react-leaflet@5.0.0(leaflet@1.9.4):
+    dependencies:
+      '@react-leaflet/core': 3.0.0(leaflet@1.9.4)
+      leaflet: 1.9.4

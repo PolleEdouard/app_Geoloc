@@ -1,0 +1,60 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
+      leaflet-control-geocoder:
+        specifier: ^3.1.0
+        version: 3.1.0(leaflet@1.9.4)
+      lucide-react:
+        specifier: ^0.488.0
+        version: 0.488.0(react@19.1.0)
+
+packages:
+
+  leaflet-control-geocoder@3.1.0:
+    resolution: {integrity: sha512-0YlcjBmVq6/9vozpjMCNhxReHaZoCfoRwxKNXQXwjdfYr3TMRQi0YFmpN/dWbqOVc0fWbY1EsoV8r11G2SZ9eA==}
+    peerDependencies:
+      leaflet: ^1.6.0
+
+  leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
+
+  lucide-react@0.488.0:
+    resolution: {integrity: sha512-ronlL0MyKut4CEzBY/ai2ZpKPxyWO4jUqdAkm2GNK5Zn3Rj+swDz+3lvyAUXN0PNqPKIX6XM9Xadwz/skLs/pQ==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  open-location-code@1.0.3:
+    resolution: {integrity: sha512-DBm14BSn40Ee241n80zIFXIT6+y8Tb0I+jTdosLJ8Sidvr2qONvymwqymVbHV2nS+1gkDZ5eTNpnOIVV0Kn2fw==}
+
+  react@19.1.0:
+    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
+    engines: {node: '>=0.10.0'}
+
+snapshots:
+
+  leaflet-control-geocoder@3.1.0(leaflet@1.9.4):
+    dependencies:
+      leaflet: 1.9.4
+    optionalDependencies:
+      open-location-code: 1.0.3
+
+  leaflet@1.9.4: {}
+
+  lucide-react@0.488.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
+  open-location-code@1.0.3:
+    optional: true
+
+  react@19.1.0: {}

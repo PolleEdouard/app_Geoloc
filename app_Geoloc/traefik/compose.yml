@@ -1,0 +1,30 @@
+services:
+ traefik:
+    image: registry-dsi.unilim.fr/docker/traefik:latest
+    container_name: traefik
+    privileged: false
+    cap_drop: ['ALL']
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "traefik_data:/cert:rw"
+    labels:
+      # Exposition du dashboard Traefik
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.traefik.me`)"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    restart: unless-stopped
+    networks:
+      - traefik
+volumes:
+  traefik_data:
+    driver: local
+networks:
+  traefik:
+    name: traefik
+    driver: bridge

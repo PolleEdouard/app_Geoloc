@@ -1,0 +1,64 @@
+
+services:
+  php:
+    build:
+      context: ./src/back/php
+    container_name: symfony-php
+    restart: unless-stopped
+    volumes:
+      - ./src/back/symfony:/var/www/symfony
+    environment:
+      - APP_ENV=dev
+    depends_on:
+      - mariadb
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.symfony-php.rule=Host(`app-php.traefik.me`)"
+      - "traefik.http.routers.symfony-php.entrypoints=websecure"
+      - "traefik.http.routers.symfony-php.tls.certresolver=letsencrypt"
+      - "traefik.http.services.symfony-php.loadbalancer.server.port=8000"
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: geolocdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - traefik
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mariadb
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`pma.traefik.me`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin.tls.certresolver=letsencrypt"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    name: traefik
+    external: true
+    
+
+volumes:
+  db_data:

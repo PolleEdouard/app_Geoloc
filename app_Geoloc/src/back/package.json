@@ -1,0 +1,8 @@
+{
+	"dependencies": {
+		"@tanstack/react-query": "^5.69.0",
+		"leaflet-search": "^4.0.0",
+		"react-leaflet": "^5.0.0",
+		"react-leaflet-geosearch": "^0.3.4"
+	}
+}
