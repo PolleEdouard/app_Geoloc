@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import SyncButton from "@/components/ui/SyncButton";
 
 interface Batiment {
   id: number;
@@ -16,6 +17,8 @@ const AdminPanel: React.FC = () => {
   const [batiments, setBatiments] = useState<Batiment[]>([]);
   const [form, setForm] = useState<Partial<Batiment>>({});
   const [isEditing, setIsEditing] = useState<number | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const formRef = useRef<HTMLDivElement>(null);
 
   const fetchBatiments = async () => {
     const res = await axios.get("/api/batiments");
@@ -29,10 +32,22 @@ const AdminPanel: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === "latitude" || name === "longitude" || name === "osmId") {
+    const numericRegex = /^-?\d*\.?\d*$/;
+    if (!numericRegex.test(value)) return; // Ignore les caractères non valides
+  }
     setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = async () => {
+    // Validation
+    if (!form.name || !form.latitude || !form.longitude) {
+      setErrorMessage("Le nom, la latitude et la longitude sont obligatoires.");
+      return;
+    }
+
+    setErrorMessage(""); // Efface l'erreur précédente
+
     if (isEditing !== null) {
       await axios.put(`/api/batiments/${isEditing}`, form);
     } else {
@@ -46,10 +61,7 @@ const AdminPanel: React.FC = () => {
   const handleEdit = (batiment: Batiment) => {
     setForm(batiment);
     setIsEditing(batiment.id);
-  };
-  const handleSync = async () => {
-    await axios.post("/api/sync-abyla");
-    fetchBatiments(); // Recharge les données locales
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   const handleSubmitEdit = async () => {
     if (isEditing !== null) {
@@ -69,7 +81,7 @@ const AdminPanel: React.FC = () => {
     <div className="max-w-4xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Admin Panel - Bâtiments</h1>
 
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div ref={formRef} className="grid grid-cols-2 gap-4 mb-4">
         <Input
           name="osmId"
           placeholder="OSM ID"
@@ -79,6 +91,7 @@ const AdminPanel: React.FC = () => {
         <Input
           name="latitude"
           placeholder="Latitude"
+          inputMode="decimal"
           value={form.latitude || ""}
           onChange={handleChange}
         />
@@ -106,9 +119,13 @@ const AdminPanel: React.FC = () => {
         <Button onClick={handleSubmit} disabled={isEditing !== null}>
           Ajouter
         </Button>
+        {errorMessage && (
+          <p className="text-red-500">{errorMessage}</p>
+        )}
         <Button onClick={handleSubmitEdit} disabled={isEditing === null}>
           Modifier
         </Button>
+        
         {isEditing !== null && (
           <Button
             variant="outline"
@@ -120,11 +137,9 @@ const AdminPanel: React.FC = () => {
             Annuler
           </Button>
         )}
-        <Button onClick={handleSync} className="mb-4">
-          Synchroniser depuis Abyla
-        </Button>
+        <SyncButton fetchBatiments={fetchBatiments} />
       </div>
-
+        
       <table className="w-full mt-8 border">
         <thead>
           <tr className="bg-gray-200">
